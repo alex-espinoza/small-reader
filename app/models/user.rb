@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, :validatable
 
-  before_save :ensure_authentication_token
+  before_validation :ensure_authentication_token
 
   validates_presence_of :email, :password, :authentication_token
 
