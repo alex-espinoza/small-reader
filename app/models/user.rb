@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
 
   before_validation :ensure_authentication_token
 
+  has_many :stories
+
   validates_presence_of :email, :password, :authentication_token
 
   private
