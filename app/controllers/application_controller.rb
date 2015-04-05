@@ -19,15 +19,15 @@ class ApplicationController < ActionController::API
     user = User.find_by(authentication_token: token)
 
     if user && Devise.secure_compare(user.authentication_token, token)
-      sign_in user, store: false
+      sign_in(user, store: false)
     else
       authentication_error
     end
   end
 
   def authentication_error
-    return render json: { success: false,
-                    message: "Invalid authentication token"},
-                  status: 401
+    render json: { success: false,
+                   message: "Invalid authentication token" },
+           status: 401
   end
 end
