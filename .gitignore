@@ -5,13 +5,18 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
-/.bundle
+/rails/.bundle
 
 # Ignore the default SQLite database.
-/db/*.sqlite3
-/db/*.sqlite3-journal
+/rails/db/*.sqlite3
+/rails/db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
-/log/*
+/rails/log/*
 !/log/.keep
-/tmp
+/rails/tmp
+
+/react/node_modules
+/react/.sass-cache
+/react/dist
+/react/bower_components
