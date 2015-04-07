@@ -1,0 +1,505 @@
+  [1m[36m (4.6ms)[0m  [1mCREATE TABLE "stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" varchar, "user_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (5.5ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "authentication_token" varchar DEFAULT '' NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (4.7ms)[0m  CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (1.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (5.3ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36m (5.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (4.8ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (1.3ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (5.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150405191623')
+  [1m[36m (5.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150405154608')[0m
+  [1m[35m (4.2ms)[0m  CREATE TABLE "stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" varchar, "user_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (5.2ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "authentication_token" varchar DEFAULT '' NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (5.9ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (1.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (5.2ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (5.5ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (4.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (1.3ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (5.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150405191623')[0m
+  [1m[35m (4.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150405154608')
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (2.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (1.4ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (1.6ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36mUser Load (1.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mUser Load (1.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."authentication_token" = ? LIMIT 1[0m  [["authentication_token", "fbae9f0ee41fc32a3089d905a8a0760f"]]
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test@test.com' LIMIT 1
+  [1m[36mSQL (2.9ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "authentication_token", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "test@test.com"], ["encrypted_password", "$2a$10$rqCmaMOBv4HqEfT8YMegkuX8o3xEnGbDA.QsQ9vXrrczYe3VsaJOa"], ["authentication_token", "fbae9f0ee41fc32a3089d905a8a0760f"], ["created_at", "2015-04-06 15:59:58.826069"], ["updated_at", "2015-04-06 15:59:58.826069"]]
+  [1m[35m (3.5ms)[0m  commit transaction
+
+
+Started POST "/v1/login" for 10.0.2.2 at 2015-04-06 16:01:12 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by V1::SessionsController#create as JSON
+  Parameters: {"username"=>"user@example.com", "password"=>"[FILTERED]"}
+  [1m[35mUser Load (1.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["email", ""]]
+Completed 422 Unprocessable Entity in 30ms (Views: 0.3ms | ActiveRecord: 4.7ms)
+
+
+Started POST "/v1/login" for 10.0.2.2 at 2015-04-06 16:01:28 +0000
+Processing by V1::SessionsController#create as JSON
+  Parameters: {"email"=>"test@test.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (2.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["email", "test@test.com"]]
+Completed 200 OK in 110ms (Views: 0.8ms | ActiveRecord: 2.4ms)
+
+
+Started POST "/v1/login" for 10.0.2.2 at 2015-04-06 16:03:47 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (2.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by V1::SessionsController#create as JSON
+  Parameters: {"email"=>"test@test.com", "password"=>"[FILTERED]"}
+  [1m[35mUser Load (2.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["email", "test@test.com"]]
+Completed 200 OK in 172ms (Views: 27.4ms | ActiveRecord: 7.1ms)
+
+
+Started POST "/v1/login" for 10.0.2.2 at 2015-04-06 16:05:40 +0000
+Processing by V1::SessionsController#create as JSON
+  Parameters: {"email"=>"test@test.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (1.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["email", "test@test.com"]]
+Completed 200 OK in 107ms (Views: 28.9ms | ActiveRecord: 1.7ms)
+
+
+Started POST "/v1/stories" for 10.0.2.2 at 2015-04-06 17:02:40 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by V1::StoriesController#create as JSON
+  Parameters: {"username"=>"xyz", "password"=>"[FILTERED]"}
+Filter chain halted as :authenticate_user_from_token rendered or redirected
+Completed 401 Unauthorized in 34ms (Views: 33.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/v1/login" for 10.0.2.2 at 2015-04-06 17:03:31 +0000
+Processing by V1::SessionsController#create as JSON
+  Parameters: {"email"=>"test@test.com", "password"=>"[FILTERED]"}
+  [1m[35mUser Load (2.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["email", "test@test.com"]]
+Completed 200 OK in 154ms (Views: 10.0ms | ActiveRecord: 8.4ms)
+
+
+Started POST "/v1/stories" for 10.0.2.2 at 2015-04-06 17:03:35 +0000
+Processing by V1::StoriesController#create as JSON
+  Parameters: {"username"=>"xyz", "password"=>"[FILTERED]"}
+Filter chain halted as :authenticate_user_from_token rendered or redirected
+Completed 401 Unauthorized in 48ms (Views: 47.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/v1/stories" for 10.0.2.2 at 2015-04-06 17:05:11 +0000
+Processing by V1::StoriesController#create as JSON
+  Parameters: {"username"=>"xyz", "password"=>"[FILTERED]"}
+Filter chain halted as :authenticate_user_from_token rendered or redirected
+Completed 401 Unauthorized in 42ms (Views: 41.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/v1/stories" for 10.0.2.2 at 2015-04-06 17:05:37 +0000
+Processing by V1::StoriesController#create as JSON
+  Parameters: {"username"=>"xyz", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (2.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."authentication_token" = ? LIMIT 1[0m  [["authentication_token", "fbae9f0ee41fc32a3089d905a8a0760f"]]
+Completed 400 Bad Request in 60ms (ActiveRecord: 2.2ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: story):
+  app/controllers/v1/stories_controller.rb:30:in `story_params'
+  app/controllers/v1/stories_controller.rb:16:in `create'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@global/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@global/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@global/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@global/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (40.2ms)
+
+
+Started GET "/v1/stories" for 10.0.2.2 at 2015-04-06 17:06:29 +0000
+Processing by V1::StoriesController#index as JSON
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+NameError (undefined local variable or method `desc' for #<V1::StoriesController:0x00000005f2dd70>):
+  app/controllers/v1/stories_controller.rb:6:in `index'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@global/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@global/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@global/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@global/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (26.0ms)
+
+
+Started POST "/v1/stories" for 10.0.2.2 at 2015-04-06 17:08:44 +0000
+Processing by V1::StoriesController#create as JSON
+  Parameters: {"story"=>{"title"=>"Switch Off", "body"=>"this is my article blahblahblahblahblah"}}
+  [1m[35mUser Load (1.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."authentication_token" = ? LIMIT 1  [["authentication_token", "fbae9f0ee41fc32a3089d905a8a0760f"]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (5.4ms)[0m  INSERT INTO "stories" ("title", "body", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "Switch Off"], ["body", "this is my article blahblahblahblahblah"], ["user_id", 1], ["created_at", "2015-04-06 17:08:44.982908"], ["updated_at", "2015-04-06 17:08:44.982908"]]
+  [1m[36m (3.8ms)[0m  [1mcommit transaction[0m
+Completed 200 OK in 83ms (Views: 0.6ms | ActiveRecord: 15.2ms)
+
+
+Started GET "/v1/stories" for 10.0.2.2 at 2015-04-06 17:10:36 +0000
+Processing by V1::StoriesController#index as JSON
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+NameError (undefined local variable or method `desc' for #<V1::StoriesController:0x000000053847f8>):
+  app/controllers/v1/stories_controller.rb:6:in `index'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@global/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@global/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@global/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@global/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (23.6ms)
+
+
+Started GET "/v1/stories" for 10.0.2.2 at 2015-04-06 17:10:49 +0000
+Processing by V1::StoriesController#index as JSON
+  [1m[35mStory Load (2.1ms)[0m  SELECT "stories".* FROM "stories"  ORDER BY "stories"."created_at" DESC
+  [1m[36mUser Load (2.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" IN (1)[0m
+Completed 200 OK in 113ms (Views: 42.1ms | ActiveRecord: 11.9ms)
+
+
+Started GET "/v1/stories" for 10.0.2.2 at 2015-04-06 17:11:13 +0000
+Processing by V1::StoriesController#index as JSON
+  [1m[35mStory Load (1.1ms)[0m  SELECT "stories".* FROM "stories"  ORDER BY "stories"."created_at" DESC
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" IN (1)[0m
+Completed 200 OK in 6ms (Views: 3.1ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/v1/stories" for 10.0.2.2 at 2015-04-06 17:11:13 +0000
+Processing by V1::StoriesController#index as JSON
+  [1m[35mStory Load (1.9ms)[0m  SELECT "stories".* FROM "stories"  ORDER BY "stories"."created_at" DESC
+  [1m[36mUser Load (1.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" IN (1)[0m
+Completed 200 OK in 8ms (Views: 3.7ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/v1/stories/1" for 10.0.2.2 at 2015-04-06 17:11:33 +0000
+Processing by V1::StoriesController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mStory Load (2.4ms)[0m  SELECT  "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (1.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 42ms (Views: 16.2ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/v1/stories/1" for 10.0.2.2 at 2015-04-06 17:11:33 +0000
+Processing by V1::StoriesController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mStory Load (1.9ms)[0m  SELECT  "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (2.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 8ms (Views: 2.7ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/v1/stories/2" for 10.0.2.2 at 2015-04-06 17:11:36 +0000
+Processing by V1::StoriesController#show as JSON
+  Parameters: {"id"=>"2"}
+  [1m[35mStory Load (2.0ms)[0m  SELECT  "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", 2]]
+Completed 404 Not Found in 3ms (ActiveRecord: 2.0ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Story with 'id'=2):
+  app/controllers/v1/stories_controller.rb:11:in `show'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@global/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@global/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@global/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@global/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (24.0ms)
+
+
+Started POST "/v1/users" for 10.0.2.2 at 2015-04-06 17:20:14 +0000
+
+ActionController::RoutingError (No route matches [POST] "/v1/users"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /usr/local/rvm/rubies/ruby-2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /usr/local/rvm/rubies/ruby-2.1.5/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /usr/local/rvm/rubies/ruby-2.1.5/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@global/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@global/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@global/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (29.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@global/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@global/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (60.6ms)
+
+
+Started POST "/v1/users" for 10.0.2.2 at 2015-04-06 17:21:35 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by V1::UsersController#create as JSON
+  Parameters: {"user"=>{"email"=>"alex@alex.com", "password"=>"[FILTERED]", "password_confirmable"=>"[FILTERED]"}}
+Unpermitted parameter: password_confirmable
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Load (1.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."authentication_token" = ? LIMIT 1[0m  [["authentication_token", "4fd6f2c62ca2728115dd6f0f5dd8c0f9"]]
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'alex@alex.com' LIMIT 1
+  [1m[36mSQL (3.6ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "authentication_token", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "alex@alex.com"], ["encrypted_password", "$2a$10$8bqUp7v.sfcz.vOamQUs7ecP./hwV0ML.kfmEQD2OG.5nemUjCtc2"], ["authentication_token", "4fd6f2c62ca2728115dd6f0f5dd8c0f9"], ["created_at", "2015-04-06 17:21:35.448989"], ["updated_at", "2015-04-06 17:21:35.448989"]]
+  [1m[35m (3.4ms)[0m  commit transaction
+Completed 200 OK in 200ms (Views: 10.8ms | ActiveRecord: 14.4ms)
+
+
+Started POST "/v1/users" for 10.0.2.2 at 2015-04-06 17:22:32 +0000
+Processing by V1::UsersController#create as JSON
+  Parameters: {"user"=>{"email"=>"alex2@alex.com", "password"=>"[FILTERED]"}}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Load (2.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."authentication_token" = ? LIMIT 1  [["authentication_token", "3dfecc7c0578d19604a65723804f8dff"]]
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'alex2@alex.com' LIMIT 1[0m
+  [1m[35mSQL (4.4ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "authentication_token", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["email", "alex2@alex.com"], ["encrypted_password", "$2a$10$liJKJAR9eM0xkw0GM/Yl7uGTPaZDaY9yXRIYiaRjqvLW9cHtqk/1C"], ["authentication_token", "3dfecc7c0578d19604a65723804f8dff"], ["created_at", "2015-04-06 17:22:32.504616"], ["updated_at", "2015-04-06 17:22:32.504616"]]
+  [1m[36m (3.4ms)[0m  [1mcommit transaction[0m
+Completed 200 OK in 142ms (Views: 11.8ms | ActiveRecord: 18.6ms)
+
+
+Started POST "/v1/login" for 10.0.2.2 at 2015-04-06 17:25:48 +0000
+Processing by V1::SessionsController#create as JSON
+  Parameters: {"email"=>"alex@alex.com", "password"=>"[FILTERED]"}
+  [1m[35mUser Load (1.8ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["email", "alex@alex.com"]]
+Completed 200 OK in 87ms (Views: 0.5ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/v1/stories" for 10.0.2.2 at 2015-04-06 17:27:16 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (2.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by V1::StoriesController#index as JSON
+  [1m[35mStory Load (2.3ms)[0m  SELECT "stories".* FROM "stories"  ORDER BY "stories"."created_at" DESC
+  [1m[36mUser Load (2.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" IN (1)[0m
+Completed 200 OK in 210ms (Views: 102.1ms | ActiveRecord: 14.0ms)
+
+
+Started GET "/v1/stories" for 10.0.2.2 at 2015-04-06 17:27:16 +0000
+Processing by V1::StoriesController#index as JSON
+  [1m[35mStory Load (1.5ms)[0m  SELECT "stories".* FROM "stories"  ORDER BY "stories"."created_at" DESC
+  [1m[36mUser Load (1.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" IN (1)[0m
+Completed 200 OK in 8ms (Views: 4.7ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/v1/stories/1" for 10.0.2.2 at 2015-04-06 17:27:21 +0000
+Processing by V1::StoriesController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mStory Load (1.2ms)[0m  SELECT  "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (1.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 62ms (Views: 16.1ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/v1/stories/1" for 10.0.2.2 at 2015-04-06 17:27:22 +0000
+Processing by V1::StoriesController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mStory Load (1.9ms)[0m  SELECT  "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (1.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 11ms (Views: 5.3ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/v1/stories" for 10.0.2.2 at 2015-04-06 17:27:26 +0000
+Processing by V1::StoriesController#index as JSON
+  [1m[35mStory Load (1.3ms)[0m  SELECT "stories".* FROM "stories"  ORDER BY "stories"."created_at" DESC
+  [1m[36mUser Load (1.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" IN (1)[0m
+Completed 200 OK in 7ms (Views: 3.8ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/v1/stories" for 10.0.2.2 at 2015-04-06 17:27:26 +0000
+Processing by V1::StoriesController#index as JSON
+  [1m[35mStory Load (2.4ms)[0m  SELECT "stories".* FROM "stories"  ORDER BY "stories"."created_at" DESC
+  [1m[36mUser Load (2.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" IN (1)[0m
+Completed 200 OK in 11ms (Views: 5.9ms | ActiveRecord: 4.3ms)
+  [1m[36m (4.6ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (4.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (1.5ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (4.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (5.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (1.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to DeviseCreateUsers (20150405154608)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamp` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/vagrant/app/small-reader/db/migrate/20150405154608_devise_create_users.rb:36)
+  [1m[35m (3.0ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "authentication_token" varchar DEFAULT '' NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (25.4ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (1.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150405154608"]]
+  [1m[36m (2.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreateStories (20150405191623)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamp` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /home/vagrant/app/small-reader/db/migrate/20150405191623_create_stories.rb:7)
+  [1m[36m (3.9ms)[0m  [1mCREATE TABLE "stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" varchar, "user_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150405191623"]]
+  [1m[36m (2.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (1.7ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (1.3ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (1.6ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Load (2.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."authentication_token" = ? LIMIT 1[0m  [["authentication_token", "937bf76d89753abc818c57f8e81f7b91"]]
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test@test.com' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Load (2.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."authentication_token" = ? LIMIT 1[0m  [["authentication_token", "d2c07c101b72681c57d2bf6b03dda4c0"]]
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test2@test.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Load (2.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."authentication_token" = ? LIMIT 1[0m  [["authentication_token", "f3cf6c289357a1a7f069c9875a94ec63"]]
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test3@test.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+
+
+Started GET "/v1/stories" for 10.0.2.2 at 2015-04-06 17:43:58 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (2.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by V1::StoriesController#index as JSON
+  [1m[35mStory Load (2.2ms)[0m  SELECT "stories".* FROM "stories"  ORDER BY "stories"."created_at" DESC
+Completed 200 OK in 86ms (Views: 2.2ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/v1/stories" for 10.0.2.2 at 2015-04-06 17:43:59 +0000
+Processing by V1::StoriesController#index as JSON
+  [1m[36mStory Load (3.3ms)[0m  [1mSELECT "stories".* FROM "stories"  ORDER BY "stories"."created_at" DESC[0m
+Completed 200 OK in 6ms (Views: 2.2ms | ActiveRecord: 3.3ms)
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mUser Load (1.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."authentication_token" = ? LIMIT 1[0m  [["authentication_token", "62a65a82f04323e6194db40954b6bb6e"]]
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test@test.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Load (1.9ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."authentication_token" = ? LIMIT 1[0m  [["authentication_token", "9ddd72afaf91debc46b77f16e85c629a"]]
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test2@test.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Load (1.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."authentication_token" = ? LIMIT 1[0m  [["authentication_token", "8515f3fbf6eb4f8ef0cdd2b11c72833c"]]
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test3@test.com' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[36mUser Load (2.0ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" DESC LIMIT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mUser Load (2.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."authentication_token" = ? LIMIT 1[0m  [["authentication_token", "ddf2f8a0a5fd2e16fd9bbdf9eab36a97"]]
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test@test.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Load (1.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."authentication_token" = ? LIMIT 1[0m  [["authentication_token", "5d823e4d918f6fa5b925c0168e20d85b"]]
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test2@test.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Load (1.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."authentication_token" = ? LIMIT 1[0m  [["authentication_token", "87aa410fbc3f2f1ab45d5e3869253fa2"]]
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test3@test.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Load (1.9ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."authentication_token" = ? LIMIT 1[0m  [["authentication_token", "40b4db01c9d5104fe9f550f5842d19d2"]]
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test@test.com' LIMIT 1
+  [1m[36mSQL (4.3ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "authentication_token", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "test@test.com"], ["encrypted_password", "$2a$10$An9Uxc61/x9f1Cc3qONBAekE5VsB1JlPQF21MVwJXug1UhHxcSsbW"], ["authentication_token", "40b4db01c9d5104fe9f550f5842d19d2"], ["created_at", "2015-04-06 17:46:53.587040"], ["updated_at", "2015-04-06 17:46:53.587040"]]
+  [1m[35m (3.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Load (1.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."authentication_token" = ? LIMIT 1  [["authentication_token", "b1df7eda3f42e9147c78a516118a4586"]]
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'test2@test.com' LIMIT 1[0m
+  [1m[35mSQL (3.5ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "authentication_token", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["email", "test2@test.com"], ["encrypted_password", "$2a$10$rmOT2q7pZaMLAw0.TUeMruPUawqqmcZwW1GEhzuFwF1JKE10BYvuK"], ["authentication_token", "b1df7eda3f42e9147c78a516118a4586"], ["created_at", "2015-04-06 17:46:53.676013"], ["updated_at", "2015-04-06 17:46:53.676013"]]
+  [1m[36m (3.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mUser Load (1.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."authentication_token" = ? LIMIT 1[0m  [["authentication_token", "725a3229af95bcbffddb092d59415a14"]]
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test3@test.com' LIMIT 1
+  [1m[36mSQL (2.7ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "authentication_token", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "test3@test.com"], ["encrypted_password", "$2a$10$xyIjh5hCn8YTuGmvvFZmx.JB38NAVxNdOoBg4hizXcux1PGc0T07u"], ["authentication_token", "725a3229af95bcbffddb092d59415a14"], ["created_at", "2015-04-06 17:46:53.761325"], ["updated_at", "2015-04-06 17:46:53.761325"]]
+  [1m[35m (2.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (4.7ms)[0m  INSERT INTO "stories" ("title", "body", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "Test Title"], ["body", "This is my story blahblablahblablahblablahblablahblablahblablahblablahblablahblablahbla"], ["user_id", 1], ["created_at", "2015-04-06 17:46:53.819643"], ["updated_at", "2015-04-06 17:46:53.819643"]]
+  [1m[36m (3.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (4.5ms)[0m  [1mINSERT INTO "stories" ("title", "body", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Another Title"], ["body", "This is my story blahblablahblablahblablahblablahblablahblablahblablahblablahblablahbla"], ["user_id", 2], ["created_at", "2015-04-06 17:46:53.829999"], ["updated_at", "2015-04-06 17:46:53.829999"]]
+  [1m[35m (3.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (4.7ms)[0m  INSERT INTO "stories" ("title", "body", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "HEY Title"], ["body", "This is my story blahblablahblablahblablahblablahblablahblablahblablahblablahblablahbla"], ["user_id", 2], ["created_at", "2015-04-06 17:46:53.839963"], ["updated_at", "2015-04-06 17:46:53.839963"]]
+  [1m[36m (3.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (4.5ms)[0m  [1mINSERT INTO "stories" ("title", "body", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "BLah Title"], ["body", "This is my story blahblablahblablahblablahblablahblablahblablahblablahblablahblablahbla"], ["user_id", 2], ["created_at", "2015-04-06 17:46:53.850583"], ["updated_at", "2015-04-06 17:46:53.850583"]]
+  [1m[35m (3.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (4.2ms)[0m  INSERT INTO "stories" ("title", "body", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "This Title Spinach"], ["body", "This is my story blahblablahblablahblablahblablahblablahblablahblablahblablahblablahbla"], ["user_id", 3], ["created_at", "2015-04-06 17:46:53.860317"], ["updated_at", "2015-04-06 17:46:53.860317"]]
+  [1m[36m (3.8ms)[0m  [1mcommit transaction[0m
+  [1m[36mUser Load (1.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" DESC LIMIT 1[0m
+  [1m[35mStory Load (1.2ms)[0m  SELECT  "stories".* FROM "stories"  ORDER BY "stories"."id" DESC LIMIT 1
+
+
+Started GET "/v1/stories" for 10.0.2.2 at 2015-04-06 17:47:20 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by V1::StoriesController#index as JSON
+  [1m[35mStory Load (3.1ms)[0m  SELECT "stories".* FROM "stories"  ORDER BY "stories"."created_at" DESC
+  [1m[36mUser Load (2.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" IN (3, 2, 1)[0m
+Completed 200 OK in 178ms (Views: 77.9ms | ActiveRecord: 15.0ms)
+
+
+Started GET "/v1/stories" for 10.0.2.2 at 2015-04-06 17:47:21 +0000
+Processing by V1::StoriesController#index as JSON
+  [1m[35mStory Load (1.9ms)[0m  SELECT "stories".* FROM "stories"  ORDER BY "stories"."created_at" DESC
+  [1m[36mUser Load (2.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" IN (3, 2, 1)[0m
+Completed 200 OK in 9ms (Views: 4.5ms | ActiveRecord: 4.1ms)
